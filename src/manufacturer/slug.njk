@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: prismic.manufacturer
+  size: 1
+  alias: manufacturer
+	addAllPagesToCollections: true
+permalink: "manufacturer/{{ manufacturer.uid }}/"
+---
+<h1>{% asText manufacturer.data.name %}</h1>

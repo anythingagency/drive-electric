@@ -8,8 +8,6 @@ pagination:
 permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 ---
 
-{# {{ prismic.vehicle[0] | log }} #}
-
 <section class="section">
   <div class="container container-sm">
     <div class="section__header text-center">
@@ -18,7 +16,7 @@ permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
     <div class="section__block">
       {% image vehicle.data.photos[0].image, "class", "img-fluid mb-1 mb-md-2" %}
       <div class="slices">
-        {% for slice in prismic.vehicle[0].data.body %}
+        {% for slice in vehicle.data.body %}
           {% if slice.slice_type === 'text' %}
             <div class="slice content">
               {% asHTML slice.primary.text %}

@@ -2,7 +2,6 @@ const { pluginPrismic } = require("eleventy-plugin-prismic");
 const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
 
 const linkResolver = (doc) => {
-	console.log(doc);
   if (doc.type === 'manufacturer') return `/car-lease/${doc.uid}/`
 	if (doc.type === 'vehicle') return `/car-lease/${doc.data.manufacturer.slug}/${doc.uid}/`
   return '/'

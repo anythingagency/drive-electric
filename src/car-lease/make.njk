@@ -1,4 +1,5 @@
 ---
+layout: layouts/base.njk
 pagination:
   data: prismic.manufacturer
   size: 1
@@ -6,26 +7,28 @@ pagination:
 	addAllPagesToCollections: true
 permalink: "car-lease/{{ manufacturer.uid }}/"
 ---
-<h1>{% asText manufacturer.data.name %}</h1>
 
 {{ prismic.vehicle | log }}
+{{ prismic.manufacturer | log }}
+
+{% set allModels = prismic.vehicle %}
+{% set manufacturerModels = [] %}
+{% for model in allModels %}
+  {% if model.data.manufacturer.id === manufacturer.id %}
+    {% set manufacturerModels = (manufacturerModels.push(model), manufacturerModels) %}
+  {% endif %}
+{% endfor %}
 
 <section class="section">
   <div class="container">
-    <div class="section__header">
+    <div class="section__header text-center">
       <h1>{% asText manufacturer.data.name %}</h1>
     </div>
     <div class="section__block">
       <div class="row">
-      {% for vehicle in prismic.vehicle %}
+      {% for model in manufacturerModels %}
         <div class="col-12 col-md-6 col-lg-4">
-          <h1>{% asText vehicle.data.name %}</h1>
-          {# <div class="text-center">
-            <div class="aspect-1-1 mb-1">
-              {% image manufacturer.data.logo, "img-fluid" %}
-            </div>
-            {% link page, manufacturer %}View models ->{% endlink %}
-          </div> #}
+          <h1>{% asText model.data.name %}</h1>
         </div>
       {% else %}
         <p>No vehicles found</p>

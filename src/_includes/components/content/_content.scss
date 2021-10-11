@@ -1,0 +1,13 @@
+// ====================
+// Content
+// ========================================
+
+// Primarily used to wrap blocks of content, to
+// allow automatic removal of margin-bottom, on
+// the last item, rather than excessive use of mb-0
+.content {
+  .container > :last-child,
+  > :last-child {
+    margin-bottom: 0;
+  }
+}

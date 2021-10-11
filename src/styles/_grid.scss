@@ -1,0 +1,115 @@
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+@if $enable-grid-classes {
+  // // Single container class with breakpoint max-widths
+  // .container,
+  // // 100% wide container at all breakpoints
+  // .container-fluid {
+  //   @include make-container();
+  // }
+
+  // Edit from bootstrap, just define container styles here
+  // Very simplistic and we dont want a lot of the Bootstrap
+  // container stuff like responsive max-width's etc.
+  .container,
+  .container-fluid {
+    width: 100%;
+    padding-right: $grid-gutter-width / 2;
+    padding-left: $grid-gutter-width / 2;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include media-breakpoint-up('md'){
+      padding-left: $grid-gutter-width;
+      padding-right: $grid-gutter-width;
+    }
+  }
+
+  // Edit from bootstrap, We have no need for responsive max-width
+  // But we can assign some size variants
+  .container {
+    max-width: $container-max-width;
+  }
+
+  @each $size, $length in $container-max-widths {
+    .container-#{$size} {
+      max-width: $length + $grid-gutter-width;
+
+      @include mq($from: md){
+        max-width: $length + ($grid-gutter-width*2);
+      }
+    }
+  }
+}
+
+// @if $enable-grid-classes {
+//   // Single container class with breakpoint max-widths
+//   .container,
+//   // 100% wide container at all breakpoints
+//   .container-fluid {
+//     @include make-container();
+//   }
+
+//   // Responsive containers that are 100% wide until a breakpoint
+//   @each $breakpoint, $container-max-width in $container-max-widths {
+//     .container-#{$breakpoint} {
+//       @extend .container-fluid;
+//     }
+
+//     @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+//       %responsive-container-#{$breakpoint} {
+//         max-width: $container-max-width;
+//       }
+
+//       // Extend each breakpoint which is smaller or equal to the current breakpoint
+//       $extend-breakpoint: true;
+
+//       @each $name, $width in $grid-breakpoints {
+//         @if ($extend-breakpoint) {
+//           .container#{breakpoint-infix($name, $grid-breakpoints)} {
+//             @extend %responsive-container-#{$breakpoint};
+//           }
+
+//           // Once the current breakpoint is reached, stop extending
+//           @if ($breakpoint == $name) {
+//             $extend-breakpoint: false;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+// Row
+//
+// Rows contain your columns.
+
+@if $enable-grid-classes {
+  .row {
+    @include make-row();
+  }
+
+  // Remove the negative margin from default .row, then the horizontal padding
+  // from all immediate children columns (to prevent runaway style inheritance).
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes {
+  @include make-grid-columns();
+}

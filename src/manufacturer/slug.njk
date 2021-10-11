@@ -1,10 +1,36 @@
 ---
 layout: layouts/base.njk
 pagination:
-  data: prismic.manufacturer
+  data: prismic.vehicle
   size: 1
-  alias: manufacturer
+  alias: vehicle
 	addAllPagesToCollections: true
-permalink: "manufacturer/{{ manufacturer.uid }}/"
+permalink: "/manufacturer/{{ manufacturer.uid }}/"
 ---
-<h1>{% asText manufacturer.data.name %}</h1>
+
+{{ prismic.vehicle | log }}
+
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <h1>{% asText manufacturer.data.name %}</h1>
+    </div>
+    <div class="section__block">
+      <div class="row">
+      {% for vehicle in prismic.vehicle %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <h1>{% asText vehicle.data.name %}</h1>
+          {# <div class="text-center">
+            <div class="aspect-1-1 mb-1">
+              {% image manufacturer.data.logo, "img-fluid" %}
+            </div>
+            {% link page, manufacturer %}View models ->{% endlink %}
+          </div> #}
+        </div>
+      {% else %}
+        <p>No vehicles found</p>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

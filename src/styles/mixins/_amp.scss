@@ -1,0 +1,11 @@
+@mixin only-amp() {
+  @if $is-amp {
+    @content;
+  }
+}
+
+@mixin not-amp() {
+  @if $is-amp != true {
+    @content;
+  }
+}

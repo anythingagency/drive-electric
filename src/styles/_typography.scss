@@ -1,0 +1,258 @@
+// ==============================
+// Typography
+// ========================================
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input, textarea, select {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  // Apply to elements within body, rather
+  // than body itself, else elements get
+  // letter spacing relative to font size
+  // of body, rather than their own font size
+  * {
+    letter-spacing: $letter-spacing-body;
+  }
+}
+
+// ====================
+// fonts
+// ========================================
+
+/* montserrat-regular - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('/assets/fonts/montserrat-v15-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/assets/fonts/montserrat-v15-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* montserrat-500 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(''),
+       url('/assets/fonts/montserrat-v15-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/assets/fonts/montserrat-v15-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* montserrat-700 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('/assets/fonts/montserrat-v15-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/assets/fonts/montserrat-v15-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+// ====================
+// Headings
+// ========================================
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: $headings-color;
+  // Incase applying to an element that is not naturally block,
+  // like a span or link, make display: block 
+  // If this isnt desired reset using utility class eg. d-inline.
+  display: block;  
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  margin-bottom: $headings-margin-bottom;
+  text-decoration: none;
+}
+
+h1, .h1 {
+  font-size: $font-size-h1;
+  font-weight: $font-weight-h1;
+  line-height: $line-height-h1;
+
+  @include mq($from: md) {
+    font-size: $font-size-h1-md;
+  }
+
+  @include mq($from: lg) {
+    font-size: $font-size-h1-lg;
+  }
+}
+
+h2, .h2 {
+  font-size: $font-size-h2;
+  line-height: $line-height-h2;
+
+  @include mq($from: md) {
+    font-size: $font-size-h2-md;
+  }
+
+  @include mq($from: lg) {
+    font-size: $font-size-h2-lg;
+  }
+}
+
+// ====================
+// Display text
+// ========================================
+
+// Set h1 through h6 according to typical heading use, 
+// if additional styles are needed setup display classes
+// for recurring special use cases
+//
+
+.display-1, .display-2, .display-3 {
+  margin-bottom: $headings-margin-bottom;
+}
+
+.display-1 {
+  font-family: $display1-font-family;
+  font-size: $display1-font-size;
+  font-weight: $display1-font-weight;
+  line-height: $display1-line-height;
+  text-transform: uppercase;
+
+  @include mq($from: md) {
+    font-size: $display1-font-size-tablet;
+  }
+
+  @include mq($from: xl) {
+    font-size: $display1-font-size-desktop;
+  }
+}
+
+// ====================
+// body copy
+// ========================================
+
+// Override any specific styles, reverting 
+// back to body copy styling
+.body {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+// Leave p margin-bottom as _reboot’s default 1rem
+p { margin-bottom: $paragraph-margin-bottom }
+
+// Adjust address to match paragraph margin
+address {
+  margin-bottom: $paragraph-margin-bottom
+}
+
+.lead {
+  font-size: $font-size-lead;
+  // line-height: $line-height-lead;
+  // margin-bottom: $margin-bottom-h1;
+
+  @include mq($from: md) {
+    font-size: $font-size-lead-md;
+  }
+
+  @include mq($from: lg) {
+    font-size: $font-size-lead-lg;
+  }
+}
+
+// ====================
+// lists
+// ========================================
+
+ol,
+ul,
+dl {
+  margin-bottom: $list-margin-bottom;
+}
+
+.list-unstyled {
+  @include list-unstyled;
+}
+
+.list-inline {
+  @include list-unstyled;
+
+  > li {
+    display: inline-block;
+    margin-bottom: $list-inline-spacing; // Incase list items wrap onto new line
+
+    &:not(:last-child) {
+      margin-right: $list-inline-spacing;
+    }
+  }
+}
+
+.list-underlined {
+  > li {
+    &:not(:last-child){
+      border-bottom: $border-width solid $border-color;
+      margin-bottom: $spacer;
+      padding: 0 0 $spacer 0;
+    }
+  }
+}
+
+.list-spaced {
+  > li {
+    &:not(:last-child){
+      margin-bottom: $spacer;
+    }
+  }
+}
+
+.list-numerical {
+  counter-reset: li;
+  list-style: none;
+  padding-left: 2em;
+
+  li {
+    counter-increment: li;
+
+    &:before {
+      content: counter(li) ".";
+      counter-increment: item;
+      display: inline-block;
+      margin-left: -2em;
+      width: 2em;
+    }
+
+    // This is to account for schema markup requested by Reprise.
+    > div {
+      display: inline;
+    }
+  }
+}
+
+// ====================
+// line break
+// ========================================
+
+// Can be combined with visibility utility classes
+// for responsive line breaks
+//
+.br {
+  display: block;
+}
+
+// ====================
+// Emphasis
+// ========================================
+
+small, .small {
+  font-size: percentage(12/16); // Based on 12px small size, for 17px body copy
+  letter-spacing: 0.024em;
+}

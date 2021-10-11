@@ -1,0 +1,26 @@
+// ==============================
+// components.scss
+//
+// The order of the components is important, nestable components
+// must be included first to ensure overwrite styles are applied
+// without having to use !important or overly qualified selectors
+// ========================================
+
+// ==============================
+// Nestable components
+// ========================================
+
+// @import "component-name/component-name";
+@import "btn/btn";
+@import "icons/icons";
+@import "images/images";
+@import "figure/figure";
+@import "header/header";
+@import "section/section";
+@import "content/content";
+@import "slice/slice";
+@import "embed/embed";
+
+// ==============================
+// Modules
+// ========================================

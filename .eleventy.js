@@ -1,7 +1,8 @@
 const { pluginPrismic } = require("eleventy-plugin-prismic");
 
 const linkResolver = (doc) => {
-  if (doc.type === 'manufacturer') return `/manufacturer/${doc.uid}/`
+  if (doc.type === 'manufacturer') return `/car-lease/${doc.uid}/`
+	if (doc.type === 'models') return `/car-lease/models/${doc.uid}/`
   return '/'
 }
 

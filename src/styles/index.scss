@@ -1,7 +1,43 @@
-@import '_reset.scss';
+// ==============================
+// Main
+// ========================================
 
-$var: white;
+$is-amp: false;
 
-body {
-  background-color: $var;
-}
+// ====================
+// Variables, mixins and functions
+// ========================================
+
+@import "functions";
+@import "variables";
+@import "mq";
+@import "mixins";
+
+// ====================
+// Global
+// ========================================
+
+@import "reboot";
+@import "typography";
+@import "grid";
+// @import "layout";
+@import "styles";
+@import "vendor";
+
+// ====================
+// Components
+// ========================================
+
+@import "../_includes/components/_components.scss";
+
+// ====================
+// Utilities
+// ========================================
+
+@import "utilities";
+
+// ====================
+// Print
+// ========================================
+
+@import "print";

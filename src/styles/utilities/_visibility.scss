@@ -1,0 +1,32 @@
+// ==============================
+// Visibility
+// ========================================
+
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+// ==============================
+// hidden
+// ========================================
+
+// For browsers that do not hide elements with hidden attr by default
+[hidden] {
+  display: none;
+}
+
+// ==============================
+// hidden print
+// ========================================
+
+.hidden-pr {
+  @include mq($media-type: print) {
+    display: none;
+    height: 0px;
+    overflow: hidden;
+  }
+}

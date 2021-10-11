@@ -1,0 +1,52 @@
+// ==============================
+// Images
+// ========================================
+
+// http://schepers.cc/svg/svg-datauri-img.html
+
+// Responsive images (ensure images don't scale beyond their parents)
+//
+// This is purposefully opt-in via an explicit class rather than being the default for all `<img loading="lazy">`s.
+// We previously tried the "images are responsive by default" approach in Bootstrap v2,
+// and abandoned it in Bootstrap v3 because it breaks lots of third-party widgets (including Google Maps)
+// which weren't expecting the images within themselves to be involuntarily resized.
+// See also https://github.com/twbs/bootstrap/issues/18178
+.img-fluid {
+  @include img-fluid;
+}
+
+// Useful for avatars/profile pics etc
+.img-round {
+	border-radius: 50%;
+}
+
+// Applies darkening effect to imagery
+.img-darken {
+  filter: brightness($image-filter-darken);
+}
+
+// Make img act like background-size: cover
+.img-fill {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+
+  // Where the img is nested within div .img-fill
+  // Use * so it's not stipped by purge because img tag
+  // is not present in html
+  @include only-amp() {
+    > * {
+      object-fit: cover;
+    }
+  }
+}
+
+// Apply to a parent link in order to apply hover effect
+// to image contained within
+.img-link {
+  @include hover-focus {
+    img {
+      filter: brightness($image-filter-darken);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+// ==============================
+// Borders
+// ========================================
+
+@mixin border-color-variant($parent, $color, $ignore-warning: false) {
+  #{$parent} {
+    border-color: $color !important;
+  }
+  a#{$parent},
+  button#{$parent} {
+    @include hover-focus() {
+      border-color: darken($color, 10%) !important;
+    }
+  }
+}

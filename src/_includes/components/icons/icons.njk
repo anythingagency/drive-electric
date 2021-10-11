@@ -1,0 +1,17 @@
+{% macro chevronDown(params) %}
+  <svg aria-hidden="true" height="{% if params.height %}{{ params.height }}{% else %}28{% endif %}" width="{% if params.width %}{{ params.width }}{% else %}28{% endif %}" class="icon icon--chevron-down{% if params.classes %} {{ params.classes }}{% endif %}">
+    <use xlink:href="{{ siteData.icon_path }}#iconChevronDown"></use>
+  </svg>
+{% endmacro %}
+
+{% macro linkedin(params) %}
+  <svg aria-hidden="true" height="{% if params.height %}{{ params.height }}{% else %}26{% endif %}" width="{% if params.width %}{{ params.width }}{% else %}26{% endif %}" class="icon icon--linkedin{% if params.classes %} {{ params.classes }}{% endif %}">
+    <use xlink:href="{{ siteData.icon_path }}#iconLinkedIn"></use>
+  </svg>
+{% endmacro %}
+
+{% macro logo(params) %}
+  <svg aria-hidden="true" height="{% if params.height %}{{ params.height }}{% else %}129{% endif %}" width="{% if params.width %}{{ params.width }}{% else %}531{% endif %}" class="icon icon--logo{% if params.classes %} {{ params.classes }}{% endif %}">
+    <use xlink:href="{{ siteData.icon_path }}#iconLogo"></use>
+  </svg>
+{% endmacro %}

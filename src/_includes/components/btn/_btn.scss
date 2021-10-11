@@ -1,0 +1,147 @@
+// stylelint-disable selector-no-qualifying-type
+
+// ==============================
+// Button
+// ========================================
+
+.btn {
+  display: inline-block;
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  color: $body-color;
+  text-align: center;
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: $btn-white-space;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: $btn-border-width solid transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+  text-transform: uppercase;
+
+  @include hover() {
+    color: $body-color;
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+// ====================
+// button color variants
+// ========================================
+
+.btn-light {
+  @include button-variant($black, $white);
+}
+
+.btn-dark {
+  @include button-variant($white, $black);
+}
+// @each $color, $value in $theme-colors {
+//   .btn-#{$color} {
+//     @include button-variant($value, $value);
+//   }
+// }
+
+// @each $color, $value in $theme-colors {
+//   .btn-outline-#{$color} {
+//     @include button-outline-variant($value);
+//   }
+// }
+
+// ====================
+// button outline variants
+// ========================================
+
+.btn-outline-light {
+  @include button-outline-variant($white, $black)
+}
+
+.btn-outline-dark {
+  @include button-outline-variant($black, $white)
+}
+
+// ====================
+// button link
+// ========================================
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  @include hover() {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  }
+
+  // No need for an active state here
+}
+
+// ====================
+// button block
+// ========================================
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+// ====================
+// button square
+// ========================================
+
+// For icon only buttons like close, search etc
+// Makes fixed size square and removes padding,
+// position icon using flex utilities
+.btn-square {
+  height: 44px;
+  padding: 0;
+  width: 44px;
+}

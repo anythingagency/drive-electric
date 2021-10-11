@@ -1,0 +1,11 @@
+// ==============================
+// Backgrounds
+// ========================================
+
+// Transparent
+.bg-transparent { background-color: transparent !important; }
+
+// Theme colors
+@each $color, $value in $theme-colors {
+  @include bg-variant(".bg-#{$color}", $value, true);
+}

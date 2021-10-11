@@ -1,0 +1,18 @@
+// ==============================
+// Aspect
+// ========================================
+
+@each $breakpoint in map-keys($image-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $image-breakpoints);
+
+    @each $aspect-ratio in $aspect-ratios {
+      $aspect-ratio-x: nth($aspect-ratio, 1);
+      $aspect-ratio-y: nth($aspect-ratio, 2);
+
+      .aspect#{$infix}--#{$aspect-ratio-x}-#{$aspect-ratio-y} {
+        @include maintain-ratio($aspect-ratio-x $aspect-ratio-y);
+      }
+    }
+  }
+}

@@ -1,0 +1,459 @@
+// ==============================
+// Variables
+// ========================================
+
+// ==============================
+// Table of Contents
+//
+// Colors
+// Escape characters
+// Options
+// Spacing
+// Sizes
+// Grid
+// Borders
+// Aspect ratios
+// Body
+// Links
+// Paragraphs
+// Typography
+// Z-index master list
+// Components
+// Utilities
+// Printing
+// ========================================
+
+// ==============================
+// Colors
+// ========================================
+
+$white:    #FFF !default;
+$gray-100: #f1f2f1 !default;
+$gray-200: #CFCFCF !default;
+$gray-300: #B7B7B7 !default;
+$gray-400: #9F9F9F !default;
+$gray-500: #878787 !default;
+$gray-600: #6F6F6F !default;
+$gray-700: #4B4B4B !default;
+$gray-800: #333333 !default;
+$gray-900: #1B1B1B !default;
+$black:    #000 !default;
+
+$grays: () !default;
+$grays: map-merge(
+  (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900
+  ),
+  $grays
+);
+
+$red-primary:    #ff4c39 !default;
+$orange-primary: #ffae32 !default;
+$blue-primary:    #4835bd !default;
+$yellow-primary: #ffd44e !default;
+$green-primary:  #75b8a0 !default;
+
+$colors: () !default;
+
+$colors: map-merge(
+  (
+    "red-primary":       $red-primary,
+    "orange-primary":    $orange-primary,
+    "blue-primary":      $blue-primary,
+    "yellow-primary":    $yellow-primary,
+    "green-primary":     $green-primary
+  ),
+  $colors
+);
+
+$color-a-primary:   $red-primary !default;
+$color-b-primary:   $orange-primary !default;
+$color-c-primary:   $blue-primary !default;
+$color-d-primary:   $yellow-primary !default;
+$color-e-primary:   $green-primary !default;
+$gray:              $gray-500 !default;
+$gray-light:        $gray-100 !default;
+$gray-dark:         $gray-700 !default;
+$light:             $white !default;
+$dark:              $black !default;
+
+// Theme colours
+//
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "a":           $color-a-primary,
+    "b":           $color-b-primary,
+    "c":           $color-c-primary,
+    "d":           $color-d-primary,
+    "e":           $color-e-primary,
+    "gray":        $gray,
+    "gray-light":  $gray-light,
+    "gray-dark":   $gray-dark,
+    "light":       $light,
+    "dark":        $dark
+  ),
+  $theme-colors
+);
+
+// Set a specific jump point for requesting color jumps
+$theme-color-interval:      8% !default;
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold:  150 !default;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark:             $gray-900 !default;
+$yiq-text-light:            $white !default;
+
+// ==============================
+// Escape characters
+// ========================================
+
+// Characters which are escaped by the escape-svg function
+$escaped-characters: (
+  ("<", "%3c"),
+  (">", "%3e"),
+  ("#", "%23"),
+  ("(", "%28"),
+  (")", "%29"),
+) !default;
+
+// ==============================
+// Options
+// Quickly modify global styling by enabling or
+// disabling optional features.
+// ========================================
+
+$enable-rounded:                              true !default;
+$enable-grid-classes:                         true !default;
+$enable-print-styles:                         true !default;
+
+// ==============================
+// Spacing
+// ========================================
+
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    "05": ($spacer / 2), // string so isnt see as 5
+    1: $spacer,
+    2: ($spacer * 2),
+    3: ($spacer * 3),
+    4: ($spacer * 4)
+  ),
+  $spacers
+);
+
+// ==============================
+// Sizes
+// ========================================
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+$sizes: map-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+// ==============================
+// Media query breakpoints
+// ========================================
+
+$mq-breakpoints: (
+  xs:  360px, // Modern Android min size, anything smaller, use $until: mobile
+  sm: 480px,
+  md:  768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1440px
+);
+
+@include _assert-ascending($mq-breakpoints, "$mq-breakpoints");
+
+// ==============================
+// Grid
+// ========================================
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+// This is derived from mq-breakpoints but has more mangeable keys
+// and starts with zero
+$grid-breakpoints: (
+  xs: 0,
+  sm: map-get($mq-breakpoints, sm),
+  md: map-get($mq-breakpoints, md),
+  lg: map-get($mq-breakpoints, lg),
+  xl: map-get($mq-breakpoints, xl),
+  xxl: map-get($mq-breakpoints, xxl)
+) !default;
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+// Grid containers
+//
+// Define the maximum width of `.container`
+$container-max-width: 1440px; // Default
+
+// Width variants for apply
+$container-max-widths: (
+  xs: 580px,
+  sm: 1024px
+) !default;
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12 !default;
+$grid-gutter-width:           32px !default; // 2 x $spacer (which is 1rem, i.e. 16px)
+$grid-row-columns:            6 !default;
+
+// ==============================
+// Image breakpoints
+// ========================================
+
+$image-breakpoints: (
+  xs: 0,
+  md: map-get($mq-breakpoints, md),
+  lg: map-get($mq-breakpoints, lg)
+) !default;
+
+@include _assert-ascending($image-breakpoints, "$image-breakpoints");
+@include _assert-starts-at-zero($image-breakpoints, "$image-breakpoints");
+
+// ==============================
+// Borders
+// ========================================
+
+$border-color: $gray;
+$border-radius: 0;
+$border-width: 1px;
+
+// ==============================
+// Aspect ratios
+// ========================================
+
+$aspect-ratios: () !default;
+$aspect-ratios: join(
+  (
+    (16 9),
+    (4 3),
+    (3 2),
+    (3 1),
+    (1 1),
+  ),
+  $aspect-ratios
+);
+
+// ==============================
+// Body
+// ========================================
+
+$body-bg: $gray-light;
+$body-color: $black;
+
+// ==============================
+// Links
+// ========================================
+
+$link-color:                              $body-color !default;
+$link-decoration:                         underline !default;
+$link-hover-darken-percentage:            15% !default; // Amount link darkened on hover
+$link-hover-color:                        darken($link-color, $link-hover-darken-percentage) !default;
+$link-hover-decoration:                   none !default;
+// Darken percentage for links with `.text-*` class (e.g. `.text-success`)
+$emphasized-link-hover-darken-percentage: $link-hover-darken-percentage !default;
+
+// ==============================
+// Paragraphs
+// ========================================
+
+$paragraph-margin-bottom:   1.5rem !default; // 24px
+
+// ==============================
+// Typography
+// ========================================
+
+// Font, line-height, and color for body text, headings, and more.
+
+// Font families
+
+// Base/fallback font families
+$font-family-sans-serif: "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// Theme font families, including fallbacks
+$font-family-base: "Montserrat", $font-family-sans-serif;
+$font-family-secondary: "Vinyl OT", $font-family-sans-serif;
+
+// Font weights
+$font-weight-normal: normal;
+$font-weight-bold: 500;
+$font-weight-extra-bold: bold;
+
+// Base font styles (applied via reboot)
+$font-size-base: 16px;
+$font-weight-base: $font-weight-normal;
+$line-height-base: 22/16; // 22px based on 16px font size
+
+// Adjust letter spacing globally via body
+$letter-spacing-body: 0.004em;
+
+// Generic heading styles (spcific level settings to follow)
+$headings-margin-bottom: 1.5rem;
+$headings-font-family: $font-family-base;
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: inherit;
+$headings-color: inherit;
+
+// H1
+$font-size-h1: 22px;
+$font-size-h1-md: 28px;
+$font-size-h1-lg: 34px;
+$font-weight-h1: $font-weight-extra-bold;
+$line-height-h1: 54/40; // 54px based on 40px font size
+
+// H2
+$font-size-h2: 18px;
+$font-size-h2-md: 22px;
+$font-size-h2-lg: 24px;
+$line-height-h2: 29/24; // 29px based on 24px font size
+
+// Display sizing
+// For none standard, but recurring font styles
+// e.g. extra big hero text etc
+//
+$display1-font-family: $headings-font-family;
+$display1-font-size: 50px;
+$display1-font-size-tablet: 60px;
+$display1-font-size-desktop: 70px;
+$display1-font-weight: $font-weight-extra-bold;
+$display1-line-height: 68/70;
+
+// Lead
+// For larger body copy
+$font-size-lead: 18px;
+$font-size-lead-md: 22px;
+$font-size-lead-lg: 24px;
+
+// Muted
+//
+$text-muted: $gray;
+
+// Lists
+//
+$dt-font-weight: bold;
+$list-inline-spacing: $spacer/2;
+$list-margin-bottom: $paragraph-margin-bottom;
+
+// ==============================
+// Z-index master list
+// ========================================
+
+// ==============================
+// Components
+// ========================================
+
+// ==============================
+// Buttons and Forms
+// ========================================
+
+$cursor-disabled: not-allowed;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+$input-btn-padding-y:         .5rem !default;
+$input-btn-padding-x:         1.5rem !default;
+$input-btn-font-family:       null !default;
+$input-btn-font-size:         $font-size-base !default;
+$input-btn-line-height:       $line-height-base !default;
+$input-btn-border-width:      $border-width !default;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+$btn-padding-y:               $input-btn-padding-y !default;
+$btn-padding-x:               $input-btn-padding-x*2 !default;
+$btn-font-family:             $font-family-secondary !default;
+$btn-font-size:               $font-size-base !default;
+$btn-line-height:             $input-btn-line-height !default;
+$btn-white-space:             null !default; // Set to `nowrap` to prevent text wrapping
+
+$btn-border-width:            $input-btn-border-width !default;
+
+$btn-font-weight:             $font-weight-normal !default;
+$btn-disabled-opacity:        .65 !default;
+
+$btn-link-disabled-color:     $gray-600 !default;
+
+$btn-block-spacing-y:         .5rem !default;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:           20px !default;
+
+// ==============================
+// Images
+// ========================================
+
+$image-filter-darken: 85%;
+
+// ==============================
+// Sections
+// ========================================
+
+$section-padding-y: $spacer * 1.5;
+$section-padding-y-tablet: $spacer * 3;
+
+$section-item-padding-y: $spacer * 1;
+$section-item-padding-y-tablet: $spacer * 2;
+
+// ==============================
+// Tables
+// Customizes the `.table` component with basic values, each used across all table variations
+// ========================================
+
+$table-cell-padding:          .5rem !default;
+$table-border-color:          $border-color !default;
+
+// ==============================
+// Utilities
+// ========================================
+
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, grid, inline-flex !default;
+$overflows: auto, hidden !default;
+$positions: static, relative, absolute, fixed, sticky !default;
+
+// ==============================
+// Printing
+// ========================================
+
+$print-page-size:                   a4 !default;
+$print-body-min-width:              map-get($grid-breakpoints, "md") !default;

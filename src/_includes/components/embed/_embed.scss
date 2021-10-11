@@ -1,0 +1,17 @@
+// ==============================
+// Embed
+// ========================================
+
+// Use in combination with aspect utility classes
+// to make embedded iframes responsive.
+.embed {
+  position: relative;
+
+  iframe {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

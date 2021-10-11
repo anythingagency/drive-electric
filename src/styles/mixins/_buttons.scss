@@ -1,0 +1,95 @@
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+// ====================
+// button variant
+// ========================================
+
+@mixin button-variant($color, $background, $border: $background) {
+  $active-background: darken($background, $link-hover-darken-percentage);
+  $active-border: darken($border, $link-hover-darken-percentage);
+
+  background-color: $background;
+  border-color: $border;
+  color: $color;
+
+  @include hover {
+    background-color: $active-background;
+    border-color: $active-border;
+    color: $color;
+  }
+
+  &:focus {
+    background-color: $active-background;
+    border-color: $active-border;
+    color: $color;
+  }
+
+  &:active {
+    background-color: $active-background;
+    background-image: none;
+    border-color: $active-border;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    color: $color;
+
+    &:hover,
+    &:focus {
+      background-color: darken($background, ($link-hover-darken-percentage + 2%));
+      border-color: darken($border, ($link-hover-darken-percentage + 10%));
+      color: $color;
+    }
+  }
+
+  &:disabled {
+    &:focus {
+      background-color: $background;
+      border-color: $border;
+    }
+    @include hover {
+      background-color: $background;
+      border-color: $border;
+    }
+  }
+}
+
+@mixin button-outline-variant($color, $color-hover: #fff) {
+  color: $color;
+  background-image: none;
+  background-color: transparent;
+  border-color: $color;
+
+  @include hover {
+    color: $color-hover;
+    background-color: $color;
+    border-color: $color;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 2px rgba($color, .5);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $color;
+    background-color: transparent;
+  }
+
+  &:active,
+  &.active {
+    color: $color-hover;
+    background-color: $color;
+    border-color: $color;
+  }
+}
+
+// Button sizes
+@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  @include border-radius($border-radius);
+  font-size: $font-size;
+  line-height: $line-height;
+  padding: $padding-y $padding-x $padding-y;
+}

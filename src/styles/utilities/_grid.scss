@@ -1,0 +1,18 @@
+// ==============================
+// Grid
+// ========================================
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    .grid-cols#{$infix}-1 {grid-template-columns: repeat(1, 1fr);}
+    .grid-cols#{$infix}-2 {grid-template-columns: repeat(2, 1fr);}
+
+    @each $prop, $abbrev in (row: row, column: col) {
+      @each $size, $length in $spacers {
+        .grid-#{$abbrev}-gap#{$infix}-#{$size} { grid-#{$prop}-gap: $length !important; }
+      }
+    }
+  }
+}
+.grid-rows-even { grid-auto-rows: 1fr; }

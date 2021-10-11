@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: Car lease
+---
+{# <h1>This is global data: {{siteData.name}}</h1> #}
+
+{# {{ prismic.manufacturer | log }} #}
+
+<section class="section">
+  <div class="container container-sm">
+    <div class="section__header text-center">
+      <h1>{% asText prismic.home[0].data.title %}</h1>
+    </div>
+    <div class="section__block">
+      <div class="row">
+      {% for manufacturer in prismic.manufacturer %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="text-center">
+            <h2>{% asText manufacturer.data.name %}</h2>
+            <div class="aspect-1-1 mb-1">
+              {% image manufacturer.data.logo, "img-fluid" %}
+            </div>
+            {% link page, manufacturer %}View models ->{% endlink %}
+          </div>
+        </div>
+      {% else %}
+        <p>No manufacturers found</p>
+      {% endfor %}
+      </div>
+
+      {# <ul>
+      {% for manufacturer in prismic.manufacturer %}
+        <li>
+          {% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}
+        </li>
+      {% else %}
+        <li>This would display if the 'item' collection were empty</li>
+      {% endfor %}
+      <ul> #}
+    </div>
+  </div>
+</section>
+

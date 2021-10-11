@@ -42,5 +42,5 @@ The local url is configured in `.lightserverrc`
 ### To Build
 
 ```
-npm run build
+npm run build 
 ```

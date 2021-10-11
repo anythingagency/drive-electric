@@ -8,9 +8,6 @@ pagination:
 permalink: "car-lease/{{ manufacturer.uid }}/"
 ---
 
-{{ prismic.vehicle | log }}
-{{ prismic.manufacturer | log }}
-
 {% set allModels = prismic.vehicle %}
 {% set manufacturerModels = [] %}
 {% for model in allModels %}
@@ -29,9 +26,13 @@ permalink: "car-lease/{{ manufacturer.uid }}/"
       {% for model in manufacturerModels %}
         <div class="col-12 col-md-6 col-lg-4">
           <h1>{% asText model.data.name %}</h1>
+          {% image model.data.photos[0].image, "class", "img-fluid mb-1" %}
+          {% link page, manufacturer %}View details ->{% endlink %}
         </div>
       {% else %}
-        <p>No vehicles found</p>
+        <div class="col-12">
+          <p class="text-center">No vehicles found</p>
+        </div>
       {% endfor %}
       </div>
     </div>

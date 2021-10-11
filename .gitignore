@@ -3,3 +3,5 @@
 package-lock.json
 node_modules
 dist
+netlify/functions/serverless/**
+!netlify/functions/serverless/index.js

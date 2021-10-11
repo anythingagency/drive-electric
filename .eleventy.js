@@ -1,4 +1,5 @@
 const { pluginPrismic } = require("eleventy-plugin-prismic");
+const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
 
 const linkResolver = (doc) => {
   if (doc.type === 'manufacturer') return `/car-lease/${doc.uid}/`
@@ -25,6 +26,12 @@ module.exports = function(eleventyConfig) {
 	};
 
 	eleventyConfig.addPlugin(pluginPrismic, prismicPluginOptions);
+
+	eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
+    name: "serverless", // The serverless function name from your permalink object
+    functionsDir: "./netlify/functions/",
+		inputDir: 'src'
+  });
 
   eleventyConfig.addPassthroughCopy('src/images')
 

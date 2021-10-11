@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: Title Strings
+permalink:
+  build: /
+  serverless: /preview/
+---
+<h1>This is global data: {{siteData.name}}</h1>
+
+<h1>{% asText prismic.home[0].data.title %}</h1>
+
+<ul>
+{% for manufacturer in prismic.manufacturer %}
+  <li>
+    {% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}
+  </li>
+{% else %}
+  <li>This would display if the 'item' collection were empty</li>
+{% endfor %}
+<ul>

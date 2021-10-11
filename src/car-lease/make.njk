@@ -1,12 +1,12 @@
 ---
-layout: layouts/base.njk
 pagination:
-  data: prismic.vehicle
+  data: prismic.manufacturer
   size: 1
-  alias: vehicle
+  alias: manufacturer
 	addAllPagesToCollections: true
-permalink: "/manufacturer/{{ manufacturer.uid }}/"
+permalink: "car-lease/{{ manufacturer.uid }}/"
 ---
+<h1>{% asText manufacturer.data.name %}</h1>
 
 {{ prismic.vehicle | log }}
 

@@ -4,12 +4,8 @@ pagination:
   data: prismic.manufacturer
   size: 1
   alias: manufacturer
-	addAllPagesToCollections: true
 permalink: "car-lease/{{ manufacturer.uid }}/"
 ---
-
-{# {{ prismic.manufacturer | log }} #}
-
 {% set allModels = prismic.vehicle %}
 {% set manufacturerModels = [] %}
 {% for model in allModels %}

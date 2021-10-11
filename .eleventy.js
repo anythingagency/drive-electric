@@ -33,6 +33,12 @@ module.exports = function(eleventyConfig) {
 		inputDir: 'src'
   });
 
+	eleventyConfig.addFilter("pluck", function (arr, selections, attr) {
+		// Assumes this is receiving a collection, hence the `data`
+		// If custom array such as from _data, update accordingly
+		return arr.filter((item) => selections.includes(item.data[attr]));
+	});
+
   eleventyConfig.addPassthroughCopy('src/images')
 
   return {

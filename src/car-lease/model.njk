@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: prismic.vehicle
+  size: 1
+  alias: vehicle
+	addAllPagesToCollections: true
+permalink: "car-lease/model/{{ vehicle.uid }}/"
+---
+
+{# {{ prismic.vehicle[0] | log }} #}
+
+<section class="section">
+  <div class="container container-sm">
+    <div class="section__header text-center">
+      <h1>{% asText vehicle.data.name %}</h1>
+    </div>
+    <div class="section__block">
+      {# {% image vehicle.data.photos[0].image, "class", "img-fluid mb-1 mb-md-2" %} #}
+      <div class="slices">
+        {% for slice in prismic.vehicle[0].data.body %}
+          {% if slice.slice_type === 'text' %}
+            <div class="slice content">
+              {% asHTML slice.primary.text %}
+            </div>
+          {% endif %}
+          {% if slice.slice_type === 'embed' %}
+            <div class="slice content">
+              {% embed slice.primary.embed, "div", "class", "embed aspect--16-9" %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {# {% asText vehicle.data.body %} #}
+    {# <div class="section__block">
+      {% for vehicle in prismic.vehicle %}
+        <div class="text-center">
+          <div class="aspect-1-1 mb-1">
+            {% image vehicle.data.photos, "img-fluid" %}
+          </div>
+          {% link page, manufacturer %}View models ->{% endlink %}
+        </div>
+      {% else %}
+        <p>No manufacturers found</p>
+      {% endfor %}
+      </div>
+    </div> #}
+  </div>
+</section>

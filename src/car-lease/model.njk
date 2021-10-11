@@ -5,7 +5,7 @@ pagination:
   size: 1
   alias: vehicle
 	addAllPagesToCollections: true
-permalink: "car-lease/model/{{ vehicle.uid }}/"
+permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 ---
 
 {# {{ prismic.vehicle[0] | log }} #}

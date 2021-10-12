@@ -3,10 +3,6 @@ layout: layouts/base.njk
 title: Car lease
 permalink: "car-lease/"
 ---
-{# <h1>This is global data: {{siteData.name}}</h1> #}
-
-{# {{ prismic.manufacturer | log }} #}
-
 <section class="section">
   <div class="container container-sm">
     <div class="section__header text-center">
@@ -29,16 +25,6 @@ permalink: "car-lease/"
       {% endfor %}
       </div>
 
-      {# <ul>
-      {% for manufacturer in prismic.manufacturer %}
-        <li>
-          {% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}
-        </li>
-      {% else %}
-        <li>This would display if the 'item' collection were empty</li>
-      {% endfor %}
-      <ul> #}
     </div>
   </div>
 </section>
-

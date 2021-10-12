@@ -1,20 +1,21 @@
-{# ---
+---
 layout: layouts/base.njk
 title: Title Strings
 permalink:
   build: /
-  serverless: /preview/
 ---
-<h1>This is global data: {{siteData.name}}</h1>
-
-<h1>{% asText prismic.home[0].data.title %}</h1>
-
-<ul>
-{% for manufacturer in prismic.manufacturer %}
-  <li>
-    {% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}
-  </li>
-{% else %}
-  <li>This would display if the 'item' collection were empty</li>
-{% endfor %}
-<ul> #}
+<section class="section">
+  <div class="container container-sm">
+    <div class="section__header text-center">
+      <h1>Drive Elecric Demo</h1>
+    </div>
+    <div class="section__block text-center">
+      <p>A demo to show how Drive Electric could utilise the JAMstack Architecture to make a blazingly fast website.</p>
+      <p>Built using <a href="https://www.11ty.dev/" target="_blank">11ty</a>, <a href="https://prismic.io/" target="_blank">Prismic</a> and <a href="https://www.netlify.com" target="_blank">Netlify</a></p>
+      <p>---</p>
+      <p><a href="/car-lease/">Example content</a></p>
+      <p><a href="/vehicle/">Example 301 redirect (/vehicle/)</a></p>
+      <p><a href="https://drive-electric.prismic.io" target="_blank">Prismic repository</a></p>
+    </div>
+  </div>
+</section>

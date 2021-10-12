@@ -15,7 +15,7 @@ permalink: "car-lease/"
           <div class="text-center">
             <h2>{% asText manufacturer.data.name %}</h2>
             <div class="aspect-1-1 mb-1">
-              {% image manufacturer.data.logo, "img-fluid" %}
+              {% link page, manufacturer %}{% image manufacturer.data.logo, "img-fluid" %}{% endlink %}
             </div>
             {% link page, manufacturer %}View models ->{% endlink %}
           </div>

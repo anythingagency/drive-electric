@@ -6,6 +6,9 @@ pagination:
   alias: vehicle
 permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 ---
+
+{# {{ prismic.manufacturer | log }} #}
+
 <section class="section">
   <div class="container container-sm">
     <div class="section__header text-center">
@@ -30,8 +33,6 @@ permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
     </div>
   </div>
 </section>
-
-
 
 {% set allModels = prismic.vehicle %}
 {% set similarModels = [] %}

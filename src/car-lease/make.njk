@@ -6,6 +6,7 @@ pagination:
   alias: manufacturer
 permalink: "car-lease/{{ manufacturer.uid }}/"
 ---
+
 {% set allModels = prismic.vehicle %}
 {% set manufacturerModels = [] %}
 {% for model in allModels %}

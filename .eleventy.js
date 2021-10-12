@@ -39,6 +39,18 @@ module.exports = function(eleventyConfig) {
 		return arr.filter((item) => selections.includes(item.data[attr]));
 	});
 
+	eleventyConfig.addFilter("find", function (arr, selections, attr) {
+		console.log(arr);
+		// Assumes this is receiving a collection, hence the `data`
+		// If custom array such as from _data, update accordingly
+		return arr.filter((item) => selections.includes(item.data[attr]));
+	});
+
+	eleventyConfig.addFilter("findById", function(arr, param1) {
+    let data = arr.filter(data => data.id == param1);
+		return data[0];
+	});
+
   eleventyConfig.addPassthroughCopy('src/images')
 
   return {

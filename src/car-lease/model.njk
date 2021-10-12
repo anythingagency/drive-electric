@@ -6,11 +6,11 @@ pagination:
   alias: vehicle
 permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 ---
-
-{# {{ prismic.manufacturer | log }} #}
+{% set manufacturer = prismic.manufacturer | findById(vehicle.data.manufacturer.id) %}
 
 <section class="section">
   <div class="container container-sm">
+    <p><- {% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}</p>
     <div class="section__header text-center">
       <h1>{% asText vehicle.data.name %}</h1>
     </div>
@@ -45,14 +45,14 @@ permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 <section class="section">
   <div class="container">
     <div class="section__header text-center">
-      <h1>You might also like</h1>
+      <h2>More {% asText manufacturer.data.name %} models</h2>
     </div>
     <div class="section__block">
       <div class="row">
       {% for model in similarModels %}
         <div class="col-12 col-md-6 col-lg-4">
           <h1>{% asText model.data.name %}</h1>
-          {% image model.data.photos[0].image, "class", "img-fluid mb-1" %}
+          {% image model.data.main_image.thumb, "class", "img-fluid mb-1" %}
           {% link page, model %}View details ->{% endlink %}
         </div>
       {% else %}

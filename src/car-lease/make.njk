@@ -24,7 +24,7 @@ permalink: "car-lease/{{ manufacturer.uid }}/"
       {% for model in manufacturerModels %}
         <div class="col-12 col-md-6 col-lg-4">
           <h1>{% asText model.data.name %}</h1>
-          {% image model.data.photos[0].image, "class", "img-fluid mb-1" %}
+          {% image model.data.main_image.thumb, "class", "img-fluid mb-1" %}
           {% link page, model %}View details ->{% endlink %}
         </div>
       {% else %}

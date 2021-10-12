@@ -28,19 +28,38 @@ permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
         {% endfor %}
       </div>
     </div>
-    {# {% asText vehicle.data.body %} #}
-    {# <div class="section__block">
-      {% for vehicle in prismic.vehicle %}
-        <div class="text-center">
-          <div class="aspect-1-1 mb-1">
-            {% image vehicle.data.photos, "img-fluid" %}
-          </div>
-          {% link page, manufacturer %}View models ->{% endlink %}
+  </div>
+</section>
+
+
+
+{% set allModels = prismic.vehicle %}
+{% set similarModels = [] %}
+{% for model in allModels %}
+  {% if model.data.manufacturer.id === vehicle.data.manufacturer.id and model.id !== vehicle.id %}
+    {% set similarModels = (similarModels.push(model), similarModels) %}
+  {% endif %}
+{% endfor %}
+
+<section class="section">
+  <div class="container">
+    <div class="section__header text-center">
+      <h1>You might also like</h1>
+    </div>
+    <div class="section__block">
+      <div class="row">
+      {% for model in similarModels %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <h1>{% asText model.data.name %}</h1>
+          {% image model.data.photos[0].image, "class", "img-fluid mb-1" %}
+          {% link page, model %}View details ->{% endlink %}
         </div>
       {% else %}
-        <p>No manufacturers found</p>
+        <div class="col-12">
+          <p class="text-center">No vehicles found</p>
+        </div>
       {% endfor %}
       </div>
-    </div> #}
+    </div>
   </div>
 </section>

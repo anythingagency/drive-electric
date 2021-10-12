@@ -34,6 +34,7 @@
   "dependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
+    "@netlify/functions": "^0.7.2",
     "acorn": "^8.0.0",
     "autoprefixer": "^10.0.0",
     "babel-loader": "^8.0.6",

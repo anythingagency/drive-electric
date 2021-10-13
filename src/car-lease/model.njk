@@ -10,7 +10,7 @@ permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 
 <section class="section">
   <div class="container container-sm">
-    <p><- {% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}</p>
+    <p>{% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}</p>
     <div class="section__header text-center">
       <h1>{% asText vehicle.data.name %}</h1>
     </div>

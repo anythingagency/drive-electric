@@ -17,7 +17,7 @@ permalink: "car-lease/{{ manufacturer.uid }}/"
 
 <section class="section">
   <div class="container">
-    <p><- <a href="/car-lease/">All manufactures</a></p>
+    <p><a href="/car-lease/">All manufactures</a></p>
     <div class="section__header text-center">
       <h1>{% asText manufacturer.data.name %}</h1>
     </div>
@@ -26,7 +26,7 @@ permalink: "car-lease/{{ manufacturer.uid }}/"
       {% for model in manufacturerModels %}
         <div class="col-12 col-md-6 col-lg-4">
           <h1>{% asText model.data.name %}</h1>
-          {% link page, model %{% image model.data.main_image.thumb, "class", "img-fluid mb-1" %}{% endlink %}
+          {% link page, model %}{% image model.data.main_image.thumb, "class", "img-fluid mb-1" %}{% endlink %}
           {% link page, model %}View details ->{% endlink %}
         </div>
       {% else %}

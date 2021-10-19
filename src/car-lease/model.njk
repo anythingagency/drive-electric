@@ -4,11 +4,10 @@ pagination:
   data: prismic.vehicle
   size: 1
   alias: vehicle
-permalink:
-  build: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
-  serverless: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
+permalink: "car-lease/{{ vehicle.data.manufacturer.slug }}/{{ vehicle.uid }}/"
 ---
 {% set manufacturer = prismic.manufacturer | findById(vehicle.data.manufacturer.id) %}
+
 <section class="section">
   <div class="container container-sm">
     <p>{% link page, manufacturer %}{% asText manufacturer.data.name %}{% endlink %}</p>

@@ -1,4 +1,5 @@
 const { pluginPrismic } = require("eleventy-plugin-prismic");
+const htmlmin = require("html-minifier");
 const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
 
 const linkResolver = (doc) => {
@@ -31,6 +32,20 @@ module.exports = function(eleventyConfig) {
     name: "serverless", // The serverless function name from your permalink object
     functionsDir: "./netlify/functions/",
 		inputDir: 'src'
+  });
+
+	eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
+    // Eleventy 1.0+: use this.inputPath and this.outputPath instead
+    if( this.outputPath && this.outputPath.endsWith(".html") ) {
+      let minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true
+      });
+      return minified;
+    }
+
+    return content;
   });
 
 	eleventyConfig.addFilter("pluck", function (arr, selections, attr) {
